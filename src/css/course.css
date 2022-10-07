@@ -1,0 +1,10 @@
+
+.card__{
+    transition: 0.6s;
+    border-bottom: 3px solid gray;
+}
+.card__:hover{
+    transform: scale(0.98);
+    box-shadow: -5px 5px 10px gray;
+    border-bottom: none;
+}

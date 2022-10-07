@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+.nav_head{
+    
+    border-bottom: 1PX solid lightgray;
+}
+.navbar_brand{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 8px 0;
+    
+}
+.navbar_brand h4{
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+}
+.home_row{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+.student_login{
+    background-color: #FFEEEE;
+    border-bottom: 2px solid red;
+    transition: 0.6s;
+    border-radius: 10px;
+}
+.admin_login{
+    background-color: #e8f4f8;
+    border-bottom: 2px solid blue;
+    transition: 0.6s;
+    border-radius: 10px;
+}
+.student_login:hover{
+    transform: scale(1.05);
+    box-shadow: 3px 3px 10px black;
+    border-bottom: none;
+
+}
+.admin_login:hover{
+    transform: scale(1.05);
+    box-shadow: -3px 3px 10px black;
+    border-bottom: none;
+}
+.admin_{
+    background-color: #D6E5FA;
+}
+.admin_con_1{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin_login_form{
+    background-color: white;
+    transition: 0.8s;
+    border-radius: 15px;
+    padding: 20px 60px;
+}
+.admin_login_form:hover{
+    box-shadow: 0 0  20px #7090bd;
+}
+.search_bar{
+    width: 30%;
+}

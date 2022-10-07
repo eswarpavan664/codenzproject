@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.side_bar{
+    border-right: 1px solid lightgray;
+    padding-top: 10px;
+    z-index: 0;
+    overflow: hidden;
+}
+.content{
+    overflow-y: scroll;
+    height: 85vh;
+}
+
+.content::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+.content::-webkit-scrollbar-thumb {
+    display: none;
+  }
+
+footer{
+    width: auto;
+    overflow: hidden;
+    background-color: #E6E4E4;
+    height: 10vh;
+}
+.student_card{
+  transition: 0.6sx;
+  border-bottom: 2px solid gray;
+}
