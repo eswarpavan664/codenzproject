@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Header from './../components/Header';
 
 function AdminHomePage() {
 
@@ -14,7 +15,7 @@ function AdminHomePage() {
      console.log("sdsadas =" ,token)
   return (
     <>
-    <Navbar/>
+    <Header/>
         <div> 
     <h1>Admin DashBoard</h1>
     <p>  Admin Home Under construction </p>
