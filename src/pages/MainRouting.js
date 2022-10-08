@@ -10,6 +10,7 @@ import Loading from './Loading';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
 import AdminLogin from './AdminLogin';
+import ProfilePage from './ProfilePage';
  
 
 
@@ -27,6 +28,7 @@ function MainRouting() {
           <Route path="/Login" element={<LoginPage />} />
           <Route path="/DashBoard" element={<Dashboard />} />
           <Route path="/AdminLogin" element={<AdminLogin />} />
+          <Route path="/Profile" element={<ProfilePage />} />
     </Routes>
     
   </BrowserRouter>

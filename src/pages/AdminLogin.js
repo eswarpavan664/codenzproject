@@ -35,11 +35,17 @@ const navigate =useNavigate();
   })
   .then(res=>res.json())
   .then(async (data)=>{
+    
          try {
-            localStorage.setItem('token',data.token)
-            localStorage.setItem('Role',"Admin")
+             if(data.Status!=="NO"){
+                localStorage.setItem('token',data[0].email)
+               localStorage.setItem('Role',"Admin")
              
-            navigate('/Dashboard');
+                navigate('/Dashboard');
+             }
+             else{
+              alert("Your Not a Valid Admin Please Check credentials")
+             }
          } catch (e) {
            console.log("error hai",e)
             
