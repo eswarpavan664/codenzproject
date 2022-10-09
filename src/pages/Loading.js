@@ -20,21 +20,24 @@ function Loading() {
   return (
     <>
     
-               <div style={{height:'100vh',display:'flex',justifyContent:'center',alignItems:'center'}}>
+               
 
 
-               <Player
-                    autoplay
-                    loop
-                    src={Lodi}
-                    style={{ height: '380px', width: '380px' }}
-                >
-                   
-                </Player>
+               <div className='row' style={{height:'100vh',display:'flex',justifyContent:'center',alignItems:'center'}}>
 
-                <h3>Result Management System</h3>
 
-               </div>
+                        <Player
+                             autoplay
+                             loop
+                             src={Lodi}
+                             style={{ height: '380px', width: '380px' }}
+                         >
+
+                         </Player>
+
+                         <h3  className='text-center'>CS CODENZ</h3>
+
+                        </div>
 
 
     </>
