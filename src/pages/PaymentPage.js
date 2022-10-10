@@ -3,21 +3,73 @@ import React,{useState,useEffect} from 'react'
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import Header from './../components/Header';
 import '../css/Payment.css'
+import { Ip } from './../constants/Ip';
+
 function PaymentPage(props) {
 
 
   const navigate = useNavigate();
   const location = useLocation()
   const {CourseData} = location.state;
-console.log(CourseData)
+//console.log(CourseData)
 
   const [transactionid,settransactionid] =useState("");
+  const token =localStorage.getItem('token');
+  const [Data,setData] =useState();
 
+  const UserDetails=()=>{
+    fetch(Ip+'/GetStudent?email='+token,{
+      headers:new Headers({
+        Authorization:"Bearer " 
+      })
+      }).then(res=>res.json())
+      .then(data=>{ 
+      
+        //console.log(data)
+          setData(data[0]);
+         
+      }
+      )
+  }
+
+  useEffect(()=>{
+    UserDetails();
+  })
 
 
   const CheckAndPlace=()=>{
-    alert("Under Construction....")
+    if(Data){
+      fetch(Ip+"/PlaceEnrollment",{
+        method:"POST",
+        headers: {
+         'Content-Type': 'application/json'
+       },
+       body:JSON.stringify({
+        "StudentName":Data?Data.Name:"",
+        "ContactNumber":Data?Data.PhoneNumber:"",
+        "StudentId":Data?Data.UserId:"",
+        "CourseName":CourseData.CourseName,
+        "CoursePhoto":CourseData.CoursePhoto,
+        "CourseDuration":CourseData.CourseDuration,
+        "CoursePrice":CourseData.CoursePrice,
+        "CourseId":CourseData.CourseId,
+        "TransactionId":transactionid,
+        "CourseStatus":"Under Review"
+       })
+      })
+      .then(res=>res.json())
+      .then(data=>{ 
+      
+        console.log(data)
+           
+         
+      }
+      )
+    }
   }
+
+
+//PlaceEnrollment
 
   return (
     <body>
@@ -45,7 +97,7 @@ console.log(CourseData)
                
               <div class="col-50">
                 <label for="cvv">Transaction Id</label>
-                <input type="text" id="cvv" name="transaction" placeholder="Transaction Id" />
+                <input type="text" id="cvv" name="transaction" placeholder="Transaction Id" value={transactionid}  onChange={(e)=>settransactionid(e.target.value)}/>
               </div>
             </div>
           </div>

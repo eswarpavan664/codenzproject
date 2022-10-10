@@ -15,7 +15,7 @@ function Dashboard(props) {
    
  }
    
-console.log(role)
+//console.log(role)
 
  if(role==="Student"){
   return (

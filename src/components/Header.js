@@ -5,6 +5,7 @@ import {
  NavLink
 } from "react-router-dom";
 
+import logo from '../images/logo.webp'
 import {useNavigate} from 'react-router-dom'
  
 function Header(props) {
@@ -30,7 +31,11 @@ function NavBar(){
     <header>
     <nav class="navbar navbar-expand-lg navbar-light" style={{borderBottom:"2px solid blue"}}>
 <div class="container">
-    <NavLink to="/DashBoard" style={{textDecoration:'none'}}><a class="navbar-brand text-dark"  >CS CODENZ</a></NavLink> 
+    <NavLink to="/DashBoard" style={{textDecoration:'none'}}>
+    
+    
+    <img src={logo} width="35px" height={"35px"}/>
+    <a class="navbar-brand text-dark"  >CS CODENZ</a></NavLink> 
 <button class="navbar-toggler text-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>

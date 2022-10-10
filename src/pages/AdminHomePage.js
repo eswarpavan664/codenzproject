@@ -12,7 +12,7 @@ function AdminHomePage() {
          navigate('/Login')
        
      }
-     console.log("sdsadas =" ,token)
+     //console.log("sdsadas =" ,token)
   return (
     <>
     <Header/>

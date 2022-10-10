@@ -40,10 +40,10 @@ function LoginPage(props) {
   const [Screen,setScreen] = useState(1);
 
 
-  const sendCred = async (em)=>{
+  const sendCred = async (em,name,photo,number)=>{
 
     var id = Math.floor(1000 + Math.random() * 900000);
-    const Email ='"'+em+'"';
+    const Email =em;
   fetch(Ip+"/StudentUserSignupOrSignin",{
     method:"POST",
     headers: {
@@ -51,9 +51,14 @@ function LoginPage(props) {
    },
    body:JSON.stringify({
     
-      "email":Email,
-      "Role":"Student",
-      "UserId":id
+    "email":Email,
+    "Role":"Student",
+    "UserId":id,
+    "Name":name,
+    "PhoneNumber":number,
+    "CollegeId":"",
+    "CollegeName":"",
+    "Photo":photo
    })
   })
   .then(res=>res.json())
@@ -75,7 +80,7 @@ function LoginPage(props) {
   const signInWithGoogle = ()=> {
     signInWithPopup(auth, provider)
     .then((result)=>{
-      sendCred(result.user.email);
+      sendCred(result.user.email,result.user.displayName,result.user.photoURL,result.user.phoneNumber);
     }).catch((error) => {
       console.log(error)
     }); 
