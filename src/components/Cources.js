@@ -78,13 +78,13 @@ function CourseCard(props){
   
   return(
     <div class="col" >
-    <div class="card"  style={{minHeight:"350px",boxShadow:"0 0 8px gray",maxHeight:"500px"}}>
-      <img src={props.data.CoursePhoto} class="card-img-top" alt="..." width={"150px"} height={"150px"}/>
+    <div class="card"  style={{minHeight:"300px",boxShadow:"0 0 8px gray",maxHeight:"350px"}}>
+      <img src={props.data.CoursePhoto} class="card-img-top" alt="..." style={{minHeight:'150px',maxHeight:'150px'}} />
       <hr style={{borderColor:'black' }}></hr>
-      <div class="card-body">
-        <h5 class="card-title">{props.data.CourseName}</h5>
+      <div class="card-body" style={{minHeight:'130px',maxHeight:'130px'}}>
+        <p class="card-title m-0 fw-bold" style={{fontSize:"14px"}} >{props.data.CourseName}</p>
         
-        <h5 class="card-title">₹{props.data.CoursePrice}</h5>
+        <p class="card-title text-danger">₹{props.data.CoursePrice}</p>
          <NavLink to="/Courses"
          
               state={{
@@ -96,7 +96,7 @@ function CourseCard(props){
               
           style={{textDecoration:'none'}}>
          <div className='row row-cols-12'>
-          <button className='btn btn-outline-info'>Enroll</button>
+          <button className='btn btn-success' style={{position:"absolute",bottom:"0"}} >Enroll</button>
         </div>
          </NavLink>
       </div>

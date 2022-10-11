@@ -13,6 +13,8 @@ import AdminLogin from './AdminLogin';
 import ProfilePage from './ProfilePage';
 import CourseDetailsPage from './CourseDetailsPage';
 import PaymentPage from './PaymentPage';
+import AboutUsPage from './AboutUsPage';
+import MyCourses from './MyCourses';
  
 
 
@@ -33,6 +35,8 @@ function MainRouting() {
           <Route path="/Profile" element={<ProfilePage />} />
           <Route path="/Courses" element={<CourseDetailsPage />} />
           <Route path="/Payment" element={<PaymentPage />} />
+          <Route path="/AboutUs" element={<AboutUsPage />} />
+          <Route path="/MyCourses" element={<MyCourses />} />
     </Routes>
     
   </BrowserRouter>

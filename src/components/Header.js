@@ -52,6 +52,13 @@ function NavBar(){
     <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
     <a onClick={logout} class="nav-link active text-dark"  >Logout</a>
     </li>
+    <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
+   <NavLink to="/AboutUs" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >About Us</a></NavLink>
+    </li>
+
+    <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
+   <NavLink to="/MyCourses" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >My Courses</a></NavLink>
+    </li>
   </ul>
   
 </div>:

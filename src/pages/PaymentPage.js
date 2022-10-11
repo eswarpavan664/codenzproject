@@ -5,6 +5,7 @@ import Header from './../components/Header';
 import '../css/Payment.css'
 import { Ip } from './../constants/Ip';
 
+import EnrollLoading from './../components/EnrollLoading';
 function PaymentPage(props) {
 
 
@@ -38,8 +39,13 @@ function PaymentPage(props) {
 
 
   const CheckAndPlace=()=>{
+    var id = Math.floor(1000 + Math.random() * 900000);
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
     if(Data){
-      fetch(Ip+"/PlaceEnrollment",{
+      fetch(Ip+"/EnrollCourses",{
         method:"POST",
         headers: {
          'Content-Type': 'application/json'
@@ -54,13 +60,22 @@ function PaymentPage(props) {
         "CoursePrice":CourseData.CoursePrice,
         "CourseId":CourseData.CourseId,
         "TransactionId":transactionid,
-        "CourseStatus":"Under Review"
+        "CourseStatus":"Under Review",
+        "StudentEmailId":token,
+        "Date":date+"-"+month+"-"+year,
+        "EnrollmentId":id
        })
       })
       .then(res=>res.json())
       .then(data=>{ 
       
-        console.log(data)
+        if(data.Status==="No"){
+          alert("Please Check the Transaction Id It is Already in Use")
+        }
+        else{
+          alert("Course Enrolled Successfully And Your Application Under Review")
+           setLod(1);
+        }
            
          
       }
@@ -70,12 +85,12 @@ function PaymentPage(props) {
 
 
 //PlaceEnrollment
-
+const [lod,setLod] = useState(0);
   return (
     <body>
 
   
- 
+    {lod===0?
 <div class="row">
   <div class="col-75">
     <div class="container" style={{backgroundColor: '#f2f2f2',padding:'5px 20px 15px 20px',border:'1px solid lightgrey',borderRadius:'3px'}}>
@@ -108,11 +123,16 @@ function PaymentPage(props) {
         </label>
        
       </form>
-       <button class="btn" onClick={CheckAndPlace}>Place Order</button>
+      <div className='row'>
+          <button className='btn btn-success col-8 offset-2' onClick={CheckAndPlace}>Place Order</button>
+        </div>
+        
     </div>
   </div>
  
-</div>
+</div>:<EnrollLoading/>
+
+    }
 
 </body>
   )
