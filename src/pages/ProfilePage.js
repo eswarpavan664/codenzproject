@@ -56,12 +56,18 @@ function ProfilePage(props) {
   return (
      <>
 
-     <Header/>
+     <Header  role={role}/>
      
-        {Data?<Profile Data={Data}/>:null}
+        {Data?role==="Admin"?<AdminProfile Data={Data}/>:<Profile Data={Data}/>:null}
      </>
   )
 }
+
+
+
+
+
+
 
 function Profile(props){
 
@@ -133,4 +139,38 @@ function Profile(props){
  
   )
 }
+
+
+
+function AdminProfile(props){
+
+ 
+ 
+ 
+  console.log(props.data)
+  const navigate =useNavigate();
+  const  logout =()=>{
+      localStorage.removeItem("token") 
+       navigate('/Login')
+     
+   }
+
+  return(
+    <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <h1 className='text-center'>Admin Profile</h1>
+    <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img class="rounded-circle mt-5" width="150px" src={props.Data.Photo?props.Data.Photo:"https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"} /><span class="font-weight-bold">{props.Data.Name}</span><span class="text-black-50">{props.Data.email}</span><span> </span></div>
+        
+            <div class="text-center" style={{width:80,borderRadius:15,marginLeft:'40%'}}><button class="btn btn-primary profile-button" type="button" onClick={logout}>Logout</button></div>
+        </div>
+                 
+    </div>
+</div>
+ 
+ 
+  )
+}
+
 export default ProfilePage;

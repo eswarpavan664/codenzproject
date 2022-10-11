@@ -1,11 +1,13 @@
 import React from 'react'
 import Header from '../components/Header';
 
-function AboutUsPage() {
-  return (
+function AboutUsPage(props) {
+ 
+    const role =localStorage.getItem('Role');
+    return (
    
     <>
-        <Header/>
+        <Header role={role}/>
         <div>
         <div className='container-fluid'>
             <div className='container'>

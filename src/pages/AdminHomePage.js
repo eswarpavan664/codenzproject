@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Header from './../components/Header';
 
-function AdminHomePage() {
+function AdminHomePage(props) {
 
   const token =localStorage.getItem('token');
     const navigate =useNavigate();
@@ -13,9 +13,10 @@ function AdminHomePage() {
        
      }
      //console.log("sdsadas =" ,token)
+     
   return (
     <>
-    <Header/>
+    <Header role={props.ro}/>
         <div> 
     <h1>Admin DashBoard</h1>
     <p>  Admin Home Under construction </p>

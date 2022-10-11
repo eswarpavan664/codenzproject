@@ -1,23 +1,24 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React,{useState,useEffect} from 'react'
-import Header from './../components/Header';
 import { Ip } from './../constants/Ip';
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { useNavigate } from 'react-router-dom';
 
 import Lottie from 'react-lottie-player'
-
-import animation from '../lottiefiles/lf30_editor_dhwjzrvz.json'
-
 import underreviewlogo from '../images/clockwise.png'
+import animation from '../lottiefiles/lf30_editor_dhwjzrvz.json'
+import Header from './../components/Header';
 
-
-function MyCourses(props) {
+function Applications(props) {
+    
     const [Data,setData] =useState();
-    const token =localStorage.getItem('token');
 
-    const role =localStorage.getItem('Role');
-    const GetCourses=()=>{
-        fetch(Ip+'/GetCoursesByUser?id='+token,{
+const role = localStorage.getItem('Role');
+const [se,setse]=useState(0);
+
+const [Status,setstatus] =useState("Under Review")
+const [TransacId,setTransacId]=useState("");
+    const GetApplications=()=>{
+
+        fetch(Ip+'/GetEnrollsForAdmin?status='+Status+"&Tran="+TransacId,{
             headers:new Headers({
               Authorization:"Bearer " 
             })
@@ -34,25 +35,49 @@ function MyCourses(props) {
                 }
             }
         )
-
     }
 
-    const [se,setse]=useState(0);
     useEffect(()=>{
-        GetCourses();
-    })
+        GetApplications();
+    },[Status,TransacId])
+ 
 
   return (
     <>
-    <Header/>
+    <Header role={role}/>
+
+    <div class="d-flex justify-content-around">
+
+<div class="mt-5 text-center"><button class="btn  profile-button"  style={{backgroundColor:Status==="Under Review"?'green':'violet' }}  type="button" onClick={()=>setstatus("Under Review")}>Under Review</button></div>
+<div class="mt-5 text-center"><button class="btn   profile-button" style={{backgroundColor:Status==="Accepted"? 'green':'violet'  }}    type="button" onClick={()=>setstatus("Accepted")}>Accepted</button></div>
+<div class="mt-5 text-center"><button class="btn   profile-button" style={{backgroundColor:Status==="Completed"?'green':'violet'}}    type="button" onClick={()=>setstatus("Completed")}>Completed</button></div>        
+
+</div>
+
+
+<div class="input-group mb-3 col-12 text-center mt-3 d-flex justify-content-center" >
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Transaction Id</span>
+                  </div>
+                 <div>
+                 <input type="text" value={TransacId} onChange={(e)=>setTransacId(e.target.value)}   class="form-control col-6" placeholder="Transaction Id" aria-label="Username" aria-describedby="basic-addon1" />
+                 </div>
+            </div>
     {se===0?<div class="row row-cols-3 row-cols-md-4 g-4"><Lode/> </div>:null}
 
+
+    
         <>
             {se===1?
                     <>
+                     
                     {Data.map((da,i)=>(
+                            <>
+                           
 
-                        <Card data={da}/>
+                            <Application data={da} Status={Status}/>
+                            </>
+                        
                         ))
 
                         }
@@ -69,9 +94,28 @@ function MyCourses(props) {
 }
 
 
-function Card(props){
+function Application(props){
+
+
+    const [UpdateStatus,setUpdateStatus]=useState("");
+
+    const UpdateDetails=(sts)=>{
+        fetch(Ip+"/UpdateApplicationStatus",{
+          method:"PUT",
+          headers: {
+           'Content-Type': 'application/json'
+         },
+         body:JSON.stringify({
+            "Status":sts,
+            "Id":props.data._id
+         })
+        })
+        .then(res=>alert("Updated."))
+      }
+      useEffect(()=>{
+            console.log("hjfjdj")
+      },[UpdateStatus])
     return(
-        
         <div>
         <div className='container-fluid'>
             <div className='container my-5'>
@@ -94,6 +138,13 @@ function Card(props){
                                      <img  src={underreviewlogo}    style={{width:'60px',height:'60px' }}/>
 
                                         <p className='m-0 mt-3'>{props.data.CourseStatus}</p>
+                                        <p className='m-0 mt-3'> Tran-Id-{props.data.TransactionId}</p>
+                                        <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>UpdateDetails("Accepted")}>Accepted</button></div>
+
+                                        <div class="mt-2 text-center"><button class="btn btn-danger profile-button" type="button" onClick={()=>UpdateDetails("Rejected")}>Rejected</button></div>
+
+
+                                
                                     </div>:null
 
                             }
@@ -104,6 +155,8 @@ function Card(props){
                                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
                                             </svg>
                                         <p className='m-0 mt-3'>{props.data.CourseStatus}</p>
+                                        <p className='m-0 mt-3'> Tran-Id-{props.data.TransactionId}</p>
+                                        <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>UpdateDetails("Completed")}>Make As Completed</button></div>
                                     </div>:null
 
                             }
@@ -116,7 +169,8 @@ function Card(props){
                                         <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                                         </svg>
                                         <p className='m-0 mt-3'>{props.data.CourseStatus}</p>
-                                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>alert("under Development")}>Download Certificate</button></div>
+                                        <p className='m-0 mt-3'> Tran-Id-{props.data.TransactionId}</p>
+                                        
                                     </div>:null
 
                             }
@@ -167,4 +221,5 @@ function Lode(){
     )
   }
 
-export default MyCourses;
+
+export default Applications;
