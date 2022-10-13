@@ -105,6 +105,7 @@ function Profile(props){
        navigate('/Login')
      
    }
+   console.log(props.Data.Photo)
 
   return(
     <div class="container rounded bg-white mt-5 mb-5">

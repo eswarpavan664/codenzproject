@@ -79,7 +79,7 @@ function Card(props){
                     <div className='col-md-3 text-center '>
                         <img className='img-fluid' src={props.data.CoursePhoto} style={{minHeight:"230px",maxHeight:"230px"}} />
                     </div>
-                    <div className='col-6 mt-3'>
+                    <div className='col-6 mt-3 text-center'>
                         <h5 style={{fontWeight:'bold'}}>{props.data.CourseName}</h5>
                         <h5><span>Course Duration</span>   </h5>
                         <h5 className='text-secondary ms-3'><span> {props.data.CourseDuration}</span>   </h5>

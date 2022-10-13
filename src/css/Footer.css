@@ -1,0 +1,31 @@
+.footer_links{
+    list-style-type: none;
+}
+.footer_links li{
+    transition: 0.2s;
+}
+.footer_links li:hover{
+    cursor: pointer;
+    border-radius: 8px;
+    color: #395B64;
+    letter-spacing: 3px;
+}
+.footer_links li:hover .facebook_icon{
+    background-color: blue;
+    border-radius: 50%;
+    color: white;
+}
+.footer_links li:hover .insta_icon{
+    background: linear-gradient(to bottom left, #405DE6,#5851D8, #833AB4, #C13584,#E1306C,#FD1D1D,#F56040,#F77737, #FCAF45,#FFDC80);
+    border-radius: 50%;
+    color: white;
+}
+.footer_links li:hover .whatsapp_icon{
+    background-color: green;
+    border-radius: 50%;
+    color: white;
+}
+/*.footer_links:hover {
+    background:linear-gradient(to right,lightblue,white);
+    border-radius: 15px;
+}*/
