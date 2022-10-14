@@ -75,6 +75,7 @@ function PaymentPage(props) {
         else{
           alert("Course Enrolled Successfully And Your Application Under Review")
            setLod(1);
+           navigate('/MyCourses');
         }
            
          
@@ -130,7 +131,7 @@ const [lod,setLod] = useState(0);
     </div>
   </div>
  
-</div>:<EnrollLoading/>
+</div>:null
 
     }
 

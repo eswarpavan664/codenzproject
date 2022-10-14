@@ -5,6 +5,7 @@ import Lottie from 'react-lottie-player'
 
 import animation from '../lottiefiles/lf30_editor_dhwjzrvz.json'
 import { NavLink } from 'react-router-dom';
+import Footer from './Footer';
 
 function Cources(props) {
 
@@ -66,7 +67,10 @@ function Cources(props) {
 
                }
             </div>
+
+          
   </section>
+  
    </>
   )
 }
@@ -101,6 +105,8 @@ function CourseCard(props){
          </NavLink>
       </div>
     </div>
+
+   
   </div>
 
 

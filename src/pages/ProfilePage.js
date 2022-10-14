@@ -135,6 +135,7 @@ function Profile(props){
         </div>
         
     </div>
+    <Footer/>
 </div>
  
  
