@@ -62,7 +62,12 @@ if(props.role==="Admin"){
     <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
    <NavLink to="/Applications" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Applications</a></NavLink>
     </li>
-     
+
+    
+    <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
+   <NavLink to="/AddCourse" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Add Course</a></NavLink>
+    </li>
+
   </ul>
   
 </div>:

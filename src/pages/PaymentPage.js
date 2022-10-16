@@ -74,7 +74,9 @@ function PaymentPage(props) {
         }
         else{
           alert("Course Enrolled Successfully And Your Application Under Review")
-           setLod(1);
+          SendOrderToAdmin(); 
+          setLod(1);
+
            navigate('/MyCourses');
         }
            
@@ -82,6 +84,25 @@ function PaymentPage(props) {
       }
       )
     }
+  }
+
+
+  const SendOrderToAdmin=()=>{
+
+
+    fetch(Ip+'/sendOrderAsSms?CustomerName='+Data?Data.Name:null+"&PhoneNumber="+Data?Data.PhoneNumber:null+"&OrderId="+transactionid,{
+      headers:new Headers({
+        Authorization:"Bearer " 
+      })
+      }).then(res=>res.json())
+      
+      .then(data=>{ 
+      
+        console.log("done");
+       
+      }
+      )
+
   }
 
 

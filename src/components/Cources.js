@@ -9,7 +9,7 @@ import Footer from './Footer';
 
 function Cources(props) {
 
-  const [Cources,setCourcse] =useState([1,1,1,1,1,1]);
+  const [Cources,setCourcse] =useState([]);
 
   const [se,setse] =useState(0);
   

@@ -2,7 +2,9 @@
 /* eslint-disable no-unused-vars */
 import { initializeApp } from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup,signInWithEmailAndPassword } from 'firebase/auth'
-import { getDatabase } from "firebase/database";
+ 
+import { getStorage } from "firebase/storage";
+import { getDatabase, ref} from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,5 +26,5 @@ export const auth = getAuth(app);
 
 export const provider = new GoogleAuthProvider();
 
- 
+export const storage = getStorage(app);
 export const database = getDatabase(app);

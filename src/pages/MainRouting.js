@@ -16,6 +16,7 @@ import PaymentPage from './PaymentPage';
 import AboutUsPage from './AboutUsPage';
 import MyCourses from './MyCourses';
 import Applications from './Applications';
+import AddCourse from './../components/AddCourse';
  
 
 
@@ -39,6 +40,7 @@ function MainRouting() {
           <Route path="/AboutUs" element={<AboutUsPage />} />
           <Route path="/MyCourses" element={<MyCourses />} />
           <Route path="/Applications" element={<Applications />} />
+          <Route path="/AddCourse" element={<AddCourse />} />
     </Routes>
     
   </BrowserRouter>
