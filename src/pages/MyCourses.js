@@ -87,7 +87,7 @@ function Card(props){
                         <h5><span>Course Price</span>   </h5>
                         <h5 className='text-secondary ms-3'><span> {props.data.CoursePrice}</span>   </h5>
                         <h5><span>Enrolled Date</span>   </h5>
-                        <h5 className='text-secondary ms-3'><span> {props.data.Date}</span>   </h5>
+                        <h5 className='text-secondary ms-3'><span> {props.data.CourseStartDate}-{props.data.CourseEndDate}</span>   </h5>
                     </div>
                     <div className='col-md-3 col-6 text-center'>
                             {props.data.CourseStatus==="Under Review"?
@@ -117,7 +117,7 @@ function Card(props){
                                         <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                                         </svg>
                                         <p className='m-0 mt-3'>{props.data.CourseStatus}</p>
-                                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>alert("under Development")}><Certificate CourseName={props.data.CourseName} Name={props.data.Name}/></button></div>
+                                        <div class="mt-5 text-center"> <Certificate CourseName={props.data.CourseName} Name={props.data.StudentName}  startdate={props.data.CourseStartDate} enddate={props.data.CourseEndDate}  /> </div>
                                     </div>:null
 
                             }

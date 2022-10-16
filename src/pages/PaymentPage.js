@@ -45,6 +45,11 @@ function PaymentPage(props) {
     let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
     if(Data){
+
+        if(Data.CollegeId!=="" && Data.CollegeName !=="" && Data.PhoneNumber!==""){
+
+     
+
       fetch(Ip+"/EnrollCourses",{
         method:"POST",
         headers: {
@@ -62,8 +67,11 @@ function PaymentPage(props) {
         "TransactionId":transactionid,
         "CourseStatus":"Under Review",
         "StudentEmailId":token,
-        "Date":date+"-"+month+"-"+year,
-        "EnrollmentId":id
+        "CourseStartDate":date+"-"+month+"-"+year,
+        "EnrollmentId":id,
+        "CollegeName":Data?Data.CollegeName:"",
+        "CollegeId": Data?Data.CollegeId:"",
+        "CourseEndDate":""
        })
       })
       .then(res=>res.json())
@@ -83,6 +91,11 @@ function PaymentPage(props) {
          
       }
       )
+    }
+    else{
+      alert("Please Update your Profile ")
+      navigate('/Profile');
+    }
     }
   }
 

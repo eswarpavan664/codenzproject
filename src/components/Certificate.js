@@ -18,7 +18,7 @@ const options = {
   return (
     <>
     <div  class="visually-hidden">
-        <div className='certificate' style={{width:"1650px",height:"1675px"}} ref = {ref}>
+        <div className='certificate' style={{width:"1650px",height:"1375px"}} ref = {ref}>
             <div className='certificate-header' style={{background:"#790252",margin:"0",padding:"0",display:"flex",justifyContent:"space-between",alignItems:"center",padding:"0 20px"}}>
                 <div className='certificate-header-left' style={{display:"flex",alignItems:"center"}}>
                     <img src='https://static.wixstatic.com/media/7ecd54_045923b0da9048e0b11755447a16ceac~mv2.png/v1/fill/w_89,h_75,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo.png' />
@@ -31,10 +31,10 @@ const options = {
             <div className='certificate-body' style={{textAlign:"center",marginBottom:'5%'}}>
                 <h1 style={{margin:"40px",color:"red"}}>Certificate of Completion</h1>
                 <h4 style={{marginBottom:"40px",padding:"0"}}>This is to certify that</h4>
-                <h3 style={{marginBottom:"40px"}}>pavaneswar</h3>
+                <h3 style={{marginBottom:"40px"}}>{props.Name}</h3>
                 <h4>has successfully completed Course</h4>
                 <h4>{props.CourseName}</h4>
-                <h4>from xx-xx-xxxx to xx-xx-xxxx with <span style={{color:"red"}}>xx%</span></h4>
+                <h4>from  {props.startdate} to {props.enddate} with <span style={{color:"red"}}>xx%</span></h4>
             </div>
             <div className='certificate-body-signs' style={{display:"flex",justifyContent:"space-evenly",alignItems:"center" }}>
                 <div className='certificate-left-qrCode' style={{textAlign:"center"}}>

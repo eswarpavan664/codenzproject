@@ -120,21 +120,14 @@ function CourseCard(props){
         <p class="card-title m-0 fw-bold" style={{fontSize:"14px"}} >{props.data.CourseName}</p>
         
         <p class="card-title text-danger">₹{props.data.CoursePrice}</p>
-         <NavLink to="/Courses"
-         
-              state={{
-
-                   CourseData:props.data
-                
-
-                }}
+       
               
-          style={{textDecoration:'none'}}>
+          
          <div className='row row-cols-12'>
           <button className='btn btn-success' style={{position:"absolute",bottom:"0"}}  onClick={DeleteItem}>Delete</button>
           
         </div>
-         </NavLink>
+       
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { Ip } from './../constants/Ip';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import Lottie from 'react-lottie-player'
 import underreviewlogo from '../images/clockwise.png'
@@ -36,6 +36,10 @@ const [TransacId,setTransacId]=useState("");
             }
         )
     }
+
+
+ 
+
 
     useEffect(()=>{
         GetApplications();
@@ -75,7 +79,7 @@ const [TransacId,setTransacId]=useState("");
                             <>
                            
 
-                            <Application data={da} Status={Status}/>
+                            <Application data={da} Status={Status} setstatus={setstatus}/>
                             </>
                         
                         ))
@@ -100,24 +104,64 @@ function Application(props){
     const [UpdateStatus,setUpdateStatus]=useState("");
 
     const UpdateDetails=(sts)=>{
-        fetch(Ip+"/UpdateApplicationStatus",{
-          method:"PUT",
-          headers: {
-           'Content-Type': 'application/json'
-         },
-         body:JSON.stringify({
-            "Status":sts,
-            "Id":props.data._id
-         })
-        })
-        .then(res=>alert("Updated."))
+       
+        let newDate = new Date()
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+
+        
+        if(sts==="Completed"){
+            fetch(Ip+"/UpdateApplicationStatus",{
+                method:"PUT",
+                headers: {
+                 'Content-Type': 'application/json'
+               },
+               body:JSON.stringify({
+                  "Status":sts,
+                  "Id":props.data._id,
+                  "CourseEndDate":date+"-"+month+"-"+year
+               })
+              })
+              .then(res=>{alert("Updated.")
+              props.setstatus(sts)})
+        }
+        else{
+            fetch(Ip+"/UpdateApplicationStatus",{
+                method:"PUT",
+                headers: {
+                 'Content-Type': 'application/json'
+               },
+               body:JSON.stringify({
+                  "Status":sts,
+                  "Id":props.data._id,
+                  "CourseEndDate":""
+               })
+              })
+              .then(res=>{alert("Updated.")
+              props.setstatus(sts)
+            })
+        }
+         
+
+        
       }
+
+
       useEffect(()=>{
-            console.log("hjfjdj")
+            console.log("updated")
       },[UpdateStatus])
+
+
+ 
     return(
         <div>
+
+        
         <div className='container-fluid'>
+            <NavLink to="/ApplicationDetailsPage"  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
+
+
             <div className='container my-5'>
                 <div className='row align-items-center' style={{borderRadius:"15px",border:"1px solid gray"}} >
                     <div className='col-md-3 text-center '>
@@ -130,7 +174,7 @@ function Application(props){
                         <h5><span>Course Price</span>   </h5>
                         <h5 className='text-secondary ms-3'><span> {props.data.CoursePrice}</span>   </h5>
                         <h5><span>Enrolled Date</span>   </h5>
-                        <h5 className='text-secondary ms-3'><span> {props.data.Date}</span>   </h5>
+                        <h5 className='text-secondary ms-3'><span> {props.data.CourseStartDate}</span>   </h5>
                     </div>
                     <div className='col-md-3 col-6 text-center'>
                             {props.data.CourseStatus==="Under Review"?
@@ -177,6 +221,7 @@ function Application(props){
                     </div>
                 </div>
             </div>
+            </NavLink>
         </div>
     </div>
     )
