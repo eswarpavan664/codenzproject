@@ -168,7 +168,12 @@ function Application(props){
                         <img className='img-fluid' src={props.data.CoursePhoto} style={{minHeight:"230px",maxHeight:"230px"}} />
                     </div>
                     <div className='col-6 mt-3'>
+                        
+                        
+                        <h6>Name:- {props.data.StudentName}</h6>
+                        <h6>Contact:- {props.data.ContactNumber}</h6>
                         <h5 style={{fontWeight:'bold'}}>{props.data.CourseName}</h5>
+                         
                         <h5><span>Course Duration</span>   </h5>
                         <h5 className='text-secondary ms-3'><span> {props.data.CourseDuration}</span>   </h5>
                         <h5><span>Course Price</span>   </h5>
