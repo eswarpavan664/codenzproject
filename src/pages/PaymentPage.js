@@ -4,7 +4,7 @@ import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import Header from './../components/Header';
 import '../css/Payment.css'
 import { Ip } from './../constants/Ip';
-
+import qrCode from '../images/WhatsApp Image 2022-10-15 at 7.09.21 PM.jpeg'
 import EnrollLoading from './../components/EnrollLoading';
 function PaymentPage(props) {
 
@@ -134,13 +134,19 @@ const [lod,setLod] = useState(0);
         <div class="row">
           
 
-          <div class="col-50">
+          <div  >
             <h3>Payment</h3>
           
-              <div>
-                <p>Course Name:-{CourseData.CourseName}</p>
-                <p>Course Price:- ₹{CourseData.CoursePrice}</p>
-                <p>Course Duration:- {CourseData.CourseDuration}</p>
+              <div className='row'>
+                 <div className='col-6'>
+                    <p>Course Name:-{CourseData.CourseName}</p>
+                    <p>Course Price:- ₹{CourseData.CoursePrice}</p>
+                    <p>Course Duration:- {CourseData.CourseDuration}</p>
+                  </div>
+
+                 <div className='col-6'>
+                    <img src={qrCode} width="180px" height="180px"/>
+                 </div>
 
               </div>
             <div class="row mt-4">
