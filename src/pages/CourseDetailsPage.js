@@ -66,16 +66,7 @@ function Temp(props){
                     <div className='col-md-4 text-center'>
                  
                     </div>
-                    <div className='col-md-8'>
-                        <h5>Topics covered in this course</h5>
-                        <ol>
-                        {props.topics.map((to,i)=>(
-                                <li>{to}</li>
-                            ))
-
-                            }
-                        </ol>
-                    </div>
+                   
                 </div>
             </div>
         </section>

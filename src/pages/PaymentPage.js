@@ -146,7 +146,7 @@ const [lod,setLod] = useState(0);
 
                  <div className='col-6'>
                     <img src={qrCode} width="180px" height="180px"/>
-                    <h4>90594 05924</h4>
+                    <h6 className='ml-5'>Contact No : 90594 05924</h6>
                  </div>
 
               </div>

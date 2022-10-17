@@ -23,7 +23,7 @@ function AboutUsPage(props) {
                             <h4 className='mt-4'>Precious Message From Founder & CEO</h4>
                             <p className='mt-5' style={{textAlign:"justify"}}>Our Aim is to Provides a Best Technical Knowledge with Low cost to all the Students who are looking for get professional in a Coding Skills along with Moral Values .The institution will continue to build its strength by developing world class teaching programmers at postgraduate and undergraduate levels in addition to pursuing research in cutting edge technologies.</p>
                             <p style={{textAlign:"justify"}}>Further, we are conscious of our social responsibility and will continue to carry out activities with direct social impact, such as school and undergraduate teachers training, development and dissemination of sustainable technologies, and research with direct relevance to society such as climate change, healthcare, water resources management, and renewable energy.</p>
-                            <button className='btn btn-outline-dark'><a href='https://www.cscodenz.org/about-8'>Learn more</a></button>
+                            <button className='btn btn-outline-dark'><a href='https://www.cscodenz.org/about-8' style={{textDecoration:'none'}}>Learn more</a></button>
                         </div>
                     </div>
                 </div>
