@@ -90,7 +90,7 @@ const [TransacId,setTransacId]=useState("");
             }
         </>  
 
-        {se===2?<h1>No Cources</h1>:null
+        {se===2?<h1>No Courses</h1>:null
 
         }
     </>
@@ -102,6 +102,25 @@ function Application(props){
 
 
     const [UpdateStatus,setUpdateStatus]=useState("");
+
+
+
+    const DeleteItem=()=>{
+        fetch(Ip+'/deleteapplication?id='+props.data._id,{
+            headers:new Headers({
+              Authorization:"Bearer " 
+            })
+            }).then(res=>res.json())
+            .then(data=>{ 
+            
+             
+              alert("deleted Succesfully");
+              
+           
+            }
+            )
+    }
+
 
     const UpdateDetails=(sts)=>{
        
@@ -159,14 +178,17 @@ function Application(props){
 
         
         <div className='container-fluid'>
-            <NavLink to="/ApplicationDetailsPage"  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
+        
 
 
             <div className='container my-5'>
                 <div className='row align-items-center' style={{borderRadius:"15px",border:"1px solid gray"}} >
+                <NavLink to="/ApplicationDetailsPage"  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
                     <div className='col-md-3 text-center '>
                         <img className='img-fluid' src={props.data.CoursePhoto} style={{minHeight:"230px",maxHeight:"230px"}} />
                     </div>
+                    </NavLink>
+                    <NavLink to="/ApplicationDetailsPage"  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
                     <div className='col-6 mt-3'>
                         
                         
@@ -181,6 +203,7 @@ function Application(props){
                         <h5><span>Enrolled Date</span>   </h5>
                         <h5 className='text-secondary ms-3'><span> {props.data.CourseStartDate}</span>   </h5>
                     </div>
+                    </NavLink>
                     <div className='col-md-3 col-6 text-center'>
                             {props.data.CourseStatus==="Under Review"?
                                     <div>
@@ -191,7 +214,8 @@ function Application(props){
                                         <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>UpdateDetails("Accepted")}>Accepted</button></div>
 
                                         <div class="mt-2 text-center"><button class="btn btn-danger profile-button" type="button" onClick={()=>UpdateDetails("Rejected")}>Rejected</button></div>
-
+                                        <div class="mt-2 mb-3 text-center"><button class="btn btn-danger profile-button" type="button" onClick={DeleteItem}>Delete</button></div>
+                                 
 
                                 
                                     </div>:null
@@ -205,7 +229,8 @@ function Application(props){
                                             </svg>
                                         <p className='m-0 mt-3'>{props.data.CourseStatus}</p>
                                         <p className='m-0 mt-3'> Tran-Id-{props.data.TransactionId}</p>
-                                        <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>UpdateDetails("Completed")}>Make As Completed</button></div>
+                                        <div class="mt-2  mb-2 text-center"><button class="btn btn-danger profile-button" type="button" onClick={DeleteItem}>Delete</button></div>
+                                        <div class="mt-2 mb-1 text-center"><button class="btn btn-primary profile-button" type="button" onClick={()=>UpdateDetails("Completed")}>Make As Completed</button></div>
                                     </div>:null
 
                             }
@@ -219,14 +244,15 @@ function Application(props){
                                         </svg>
                                         <p className='m-0 mt-3'>{props.data.CourseStatus}</p>
                                         <p className='m-0 mt-3'> Tran-Id-{props.data.TransactionId}</p>
-                                        
+                                        <div class="mt-2 mb-3 text-center"><button class="btn btn-danger profile-button" type="button" onClick={DeleteItem}>Delete</button></div>
+                                 
                                     </div>:null
 
                             }
                     </div>
                 </div>
             </div>
-            </NavLink>
+          
         </div>
     </div>
     )

@@ -118,14 +118,13 @@ function AddCourse(props) {
                     
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Course Name</label><input onChange={(e)=>setCourseName(e.target.value)} value={ CourseName}  type="text" class="form-control" placeholder="Course Name"  /></div>
+                    <div class="col-md-12"><label class="labels">Course Name</label><input onChange={(e)=>setCourseName(e.target.value)} value={ CourseName}  type="text" class="form-control" placeholder="Course Name"  /></div>
                        </div>
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Course Duration</label><input      onChange={(e)=>setCourseDuration(e.target.value)} value={CourseDuration}  type="text" class="form-control" placeholder="Course Duration"    /></div>
                     <div class="col-md-12"><label class="labels">Course Price</label><input         onChange={(e)=>setCoursePrice(e.target.value)} value={CoursePrice}  type="text" class="form-control" placeholder="Course Priced"                /></div>
                     <div class="col-md-12"><label class="labels">Course Descriptions</label><input  onChange={(e)=>setCourseDiscription(e.target.value)} value={CourseDiscription}  type="text" class="form-control" placeholder="Course Descriptions"   /></div>
                       
-                    <div class="col-md-12"><label class="labels">Course Topics(topic1-topic2..)</label><input  onChange={(e)=>setCourseTopics(e.target.value)} value={CourseTopics}  type="text" class="form-control" placeholder="Course Descriptions"   /></div>
                    
                       
                       </div>

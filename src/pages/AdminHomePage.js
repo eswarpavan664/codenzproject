@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Header from './../components/Header';
 import { Ip } from './../constants/Ip';
-
+import { getDatabase, set ,push,child,onValue} from "firebase/database";
+import { storage ,databaseref,app,auth,database} from '../firebase';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import Lottie from 'react-lottie-player'
 
 import animation from '../lottiefiles/lf30_editor_dhwjzrvz.json'
@@ -111,6 +113,24 @@ function CourseCard(props){
 }
 
 
+
+
+ 
+
+
+
+
+const [Coursename,setCoursename] =useState(props.data.CourseName);
+const [Courseduration,setCourseduration] =useState(props.data.CourseDuration);
+const [Courseprice,setCourseprice] =useState(props.data.CoursePrice);
+const [Coursediscription,setCoursediscription] =useState(props.data.CourseDiscription);
+ 
+const [Coursephoto,setCourseCoursephoto] =useState(props.data.CoursePhoto);
+
+
+
+ 
+
 const [Count1,setCount1] =useState(0);
 const [Count2,setCount2] =useState(0);
 const [Count3,setCount3] =useState(0);
@@ -202,11 +222,25 @@ useEffect(()=>{
                         </div>
                         
                     </div>
-                    <div className='row align-items-center text-center'>
+                    <div className='row align-items-center text-center justify-content-space-evenly'>
                     <p className='text-danger m-0 p-0 col-2'>₹{props.data.CoursePrice}</p>
-                    <button className='col-8 btn btn-outline-danger'  onClick={DeleteItem}>
+                    <button className='col-4  btn btn-outline-danger'  onClick={DeleteItem}>
+                    
                         Delete
                     </button>
+                    <NavLink to="/UpdateCoursePage"
+                     state={{
+                      Data:props.data
+                     }}
+                     className='col-4 btn btn-outline-primary'
+                     style={{textDecoration:'none',color:'black'}}
+                     >
+                      
+                       
+                          Edit
+                          
+                      
+                      </NavLink>
                     </div>
                     
                 </div>
