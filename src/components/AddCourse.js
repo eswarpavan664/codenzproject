@@ -92,7 +92,13 @@ function AddCourse(props) {
       
         alert("done")
         setCourseName("");
-         
+        setCourseDate("");
+        setCourseTime("");
+        setCourseDuration("");
+        setCoursePrice("");
+        setCourseDiscription("");
+        setCourseTopics("");
+
       }
       )
   

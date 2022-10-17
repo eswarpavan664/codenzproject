@@ -73,7 +73,7 @@ const options = {
      
     </div>
 
-    <ReactToPdf targetRef={ref} filename="div-blue.pdf" options={options} x={.5} y={.5} scale={0.8}>
+    <ReactToPdf targetRef={ref} filename="Certificate.pdf" options={options} x={.5} y={.5} scale={0.8}>
         {({toPdf}) => (
             <button onClick={toPdf} class="btn btn-primary profile-button">Download Certificate</button>
         )}

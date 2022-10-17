@@ -67,7 +67,7 @@ function AdminHomePage(props) {
             <h2>Courses</h2>
                {se===0?<div class="row row-cols-3 row-cols-md-4 g-4"><Lode/> </div>:null}
 
-               {se===1?  <div class="row row-cols-2 row-cols-md-4 g-4">
+               {se===1?  <div class="row">
                     {Cources.map((co,i)=>(
 
                       <CourseCard data={co}/>
@@ -111,8 +111,112 @@ function CourseCard(props){
 }
 
 
+const [Count1,setCount1] =useState(0);
+const [Count2,setCount2] =useState(0);
+const [Count3,setCount3] =useState(0);
+const GetEnrollCount1=()=>{
+
+  fetch(Ip+'/GetEnrollsForAnalysis?id='+props.data.CourseId+"&status="+"Under Review",{
+    headers:new Headers({
+      Authorization:"Bearer " 
+    })
+    }).then(res=>res.json())
+    .then(data=>{ 
+    
+     
+      setCount1(data.length);
+   console.log("Applications  =",data)
+       
+    }
+    )
+}
+
+
+const GetEnrollCount2=()=>{
+
+  fetch(Ip+'/GetEnrollsForAnalysis?id='+props.data.CourseId+"&status="+"Accepted",{
+    headers:new Headers({
+      Authorization:"Bearer " 
+    })
+    }).then(res=>res.json())
+    .then(data=>{ 
+    
+     
+      setCount2(data.length);
+   console.log("Applications  =",data)
+       
+    }
+    )
+}
+const GetEnrollCount3=()=>{
+
+  fetch(Ip+'/GetEnrollsForAnalysis?id='+props.data.CourseId+"&status="+"Completed",{
+    headers:new Headers({
+      Authorization:"Bearer " 
+    })
+    }).then(res=>res.json())
+    .then(data=>{ 
+    
+     
+      setCount3(data.length);
+   console.log("Applications  =",data)
+       
+    }
+    )
+}
+useEffect(()=>{
+  if(props.data.CourseId){
+    GetEnrollCount1();
+    GetEnrollCount2();
+    GetEnrollCount3();
+  }
+   
+})
+
   return(
-    <div class="col" >
+   <div className='col-md-6 pb-3' style={{boxShadow:"0 0 10px gray" }}>
+                    <div className='row  align-items-center'>
+                        <div className='col-md-3 col-6 '>
+                            <img src={props.data.CoursePhoto} className='img-fluid' />
+                            <p className='m-0 p-0 text-center fw-bold'>{props.data.CourseName}</p>
+                        </div>
+                        <div className='col-md-9 col-6'>
+                            <div className='row'>
+                                <div className='col-md-6 text-center '>
+                                    <p className='m-0 p-0'>Under Review</p>
+                                    <p className='m-0 p-0'>{Count1}</p>
+                                </div>
+                                <div className='col-md-6 text-center '>
+                                    <p className='m-0 p-0'>accepted</p>
+                                    <p className='m-0 p-0'>{Count2}</p>
+                                </div>
+                                <div className='col-md-6 text-center '>
+                                    <p className='m-0 p-0'>Completed</p>
+                                    <p className='m-0 p-0'>{Count3}</p>
+                                </div>
+                                <div className='col-md-6 text-center '>
+                                    <p className='m-0 p-0'>Total</p>
+                                    <p className='m-0 p-0'>{Count1+Count2+Count3}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div className='row align-items-center text-center'>
+                    <p className='text-danger m-0 p-0 col-2'>₹{props.data.CoursePrice}</p>
+                    <button className='col-8 btn btn-outline-danger'  onClick={DeleteItem}>
+                        Delete
+                    </button>
+                    </div>
+                    
+                </div>
+  )
+}
+
+
+/*
+
+ <div class="col" >
     <div class="card"  style={{minHeight:"300px",boxShadow:"0 0 8px gray",maxHeight:"350px"}}>
       <img src={props.data.CoursePhoto} class="card-img-top" alt="..." style={{minHeight:'150px',maxHeight:'150px'}} />
       <hr style={{borderColor:'black' }}></hr>
@@ -121,7 +225,7 @@ function CourseCard(props){
         
         <p class="card-title text-danger">₹{props.data.CoursePrice}</p>
        
-              
+             <p className='mb-4'> {Count1}-{Count2}-{Count3}</p> 
           
          <div className='row row-cols-12'>
           <button className='btn btn-success' style={{position:"absolute",bottom:"0"}}  onClick={DeleteItem}>Delete</button>
@@ -133,11 +237,8 @@ function CourseCard(props){
 
    
   </div>
-  )
-}
 
-
-
+  */
 
 function Lode(){
   return(
