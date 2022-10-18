@@ -57,12 +57,19 @@ if(props.role==="Admin"){
     <a onClick={logout} class="nav-link active text-dark"  >Logout</a>
     </li>
     <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
-   <NavLink to="/AboutUs" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >About Us</a></NavLink>
+   <NavLink to="/AboutUs" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >About us</a></NavLink>
     </li>
-    <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
-   <NavLink to="/Applications" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Applications</a></NavLink>
-    </li>
-
+     
+    <li class="nav-item dropdown ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Applications
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li> <NavLink to="/Applications" state={{Type:"Under Review"}} style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Under Review</a></NavLink></li>
+            <li> <NavLink to="/Applications" state={{Type:"Accepted"}} style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Accepted</a></NavLink></li>
+            <li> <NavLink to="/Applications" state={{Type:"Completed"}} style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Completed</a></NavLink></li>
+          </ul>
+        </li>
     
     <li class="nav-item ms-md-2 mt-md-0 mt-2" style={{cursor:"pointer"}}>
    <NavLink to="/AddCourse" style={{textDecoration:'none'}}>  <a  class="nav-link active text-dark"  >Add Course</a></NavLink>

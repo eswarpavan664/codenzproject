@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { Ip } from './../constants/Ip';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
 import Lottie from 'react-lottie-player'
 import underreviewlogo from '../images/clockwise.png'
@@ -14,11 +14,19 @@ function Applications(props) {
 const role = localStorage.getItem('Role');
 const [se,setse]=useState(0);
 
-const [Status,setstatus] =useState("Under Review")
+ 
 const [TransacId,setTransacId]=useState("");
+
+
+  
+const navigate = useNavigate();
+const location = useLocation()
+const {Type} = location.state;
+
+const [Status,setstatus] =useState("");
     const GetApplications=()=>{
 
-        fetch(Ip+'/GetEnrollsForAdmin?status='+Status+"&Tran="+TransacId,{
+        fetch(Ip+'/GetEnrollsForAdmin?status='+Type+"&Tran="+TransacId,{
             headers:new Headers({
               Authorization:"Bearer " 
             })
@@ -43,20 +51,14 @@ const [TransacId,setTransacId]=useState("");
 
     useEffect(()=>{
         GetApplications();
-    },[Status,TransacId])
+    },[Type,TransacId])
  
 
   return (
     <>
-    <Header role={role}/>
+    <Header role={role} />
 
-    <div class="d-flex justify-content-around">
-
-<div class="mt-5 text-center"><button class="btn  profile-button"  style={{backgroundColor:Status==="Under Review"?'green':'violet' }}  type="button" onClick={()=>setstatus("Under Review")}>Under Review</button></div>
-<div class="mt-5 text-center"><button class="btn   profile-button" style={{backgroundColor:Status==="Accepted"? 'green':'violet'  }}    type="button" onClick={()=>setstatus("Accepted")}>Accepted</button></div>
-<div class="mt-5 text-center"><button class="btn   profile-button" style={{backgroundColor:Status==="Completed"?'green':'violet'}}    type="button" onClick={()=>setstatus("Completed")}>Completed</button></div>        
-
-</div>
+  
 
 
 <div class="input-group mb-3 col-12 text-center mt-3 d-flex justify-content-center" >
@@ -79,7 +81,7 @@ const [TransacId,setTransacId]=useState("");
                             <>
                            
 
-                            <Application data={da} Status={Status} setstatus={setstatus}/>
+                            <Application data={da} Status={Type}  />
                             </>
                         
                         ))
@@ -90,7 +92,7 @@ const [TransacId,setTransacId]=useState("");
             }
         </>  
 
-        {se===2?<h1>No Courses</h1>:null
+        {se===2?<h1>No {Type} Courses</h1>:null
 
         }
     </>
@@ -142,8 +144,10 @@ function Application(props){
                   "CourseEndDate":date+"-"+month+"-"+year
                })
               })
-              .then(res=>{alert("Updated.")
-              props.setstatus(sts)})
+              .then(res=>{ 
+                //props.setstatus(sts)
+                SendGmail("Dear Candidate You Successfully "+sts+" course and You can Download certificate at Your Account --Team CS CODENZ",props.data.StudentEmailId);
+            })
         }
         else{
             fetch(Ip+"/UpdateApplicationStatus",{
@@ -157,13 +161,32 @@ function Application(props){
                   "CourseEndDate":""
                })
               })
-              .then(res=>{alert("Updated.")
-              props.setstatus(sts)
+              .then(res=>{ 
+              //props.setstatus(sts)
+              SendGmail("Dear Candidate Your Application "+sts+" for course "+props.data.CourseName+"Application Id- "+props.data.EnrollmentId +"-Team CS CODENZ",props.data.StudentEmailId);
             })
         }
-         
+          
+      }
 
-        
+
+      const SendGmail=(msg,gmail)=>{
+        fetch(Ip+'/sendgmail?msg='+msg+"&gmail="+gmail,{
+            headers:new Headers({
+              Authorization:"Bearer " 
+            })
+            }).then(res=>res.json())
+            .then(data=>{ 
+            
+              console.log(data)
+              if(data.status==="Done"){
+                alert("Done")
+              }
+              else{
+                alert("not done")
+              }
+            }
+        )
       }
 
 
