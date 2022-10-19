@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Header from './../components/Header';
@@ -7,6 +7,7 @@ import { getDatabase, set ,push,child,onValue} from "firebase/database";
 import { storage ,databaseref,app,auth,database} from '../firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import Lottie from 'react-lottie-player'
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 import animation from '../lottiefiles/lf30_editor_dhwjzrvz.json'
 import { NavLink } from 'react-router-dom';
@@ -145,7 +146,7 @@ const GetEnrollCount1=()=>{
     
      
       setCount1(data.length);
-   console.log("Applications  =",data)
+  // console.log("Applications  =",data)
        
     }
     )
@@ -163,7 +164,7 @@ const GetEnrollCount2=()=>{
     
      
       setCount2(data.length);
-   console.log("Applications  =",data)
+  // console.log("Applications  =",data)
        
     }
     )
@@ -179,7 +180,7 @@ const GetEnrollCount3=()=>{
     
      
       setCount3(data.length);
-   console.log("Applications  =",data)
+  // console.log("Applications  =",data)
        
     }
     )
@@ -223,24 +224,26 @@ useEffect(()=>{
                         
                     </div>
                     <div className='row align-items-center text-center justify-content-space-evenly'>
-                    <p className='text-danger m-0 p-0 col-2'>₹{props.data.CoursePrice}</p>
-                    <button className='col-4  btn btn-outline-danger'  onClick={DeleteItem}>
+                           <p className='text-danger m-0 p-0 col-2'>₹{props.data.CoursePrice}</p>
+                          <button className='col-4  btn btn-outline-danger'  onClick={DeleteItem}>
                     
-                        Delete
-                    </button>
-                    <NavLink to="/UpdateCoursePage"
-                     state={{
-                      Data:props.data
-                     }}
-                     className='col-4 btn btn-outline-primary'
-                     style={{textDecoration:'none',color:'black'}}
-                     >
+                               Delete
+                           </button>
+                            <NavLink to="/UpdateCoursePage"
+                            state={{
+                              Data:props.data
+                            }}
+                            className='col-4 btn btn-outline-primary'
+                            style={{textDecoration:'none',color:'black'}}
+                            >
                       
                        
                           Edit
                           
                       
                       </NavLink>
+
+                      <div className='col-2'> <FormatToExcel data={props.data}/></div>
                     </div>
                     
                 </div>
@@ -305,6 +308,102 @@ function Lode(){
        
                                
 
+    </>
+  )
+}
+
+
+
+function FormatToExcel(props){
+  const [Data,setData] =useState([]);
+  const tableRef = useRef(null);
+
+
+  const GetEnrollsByCourse=()=>{
+
+    fetch(Ip+'/GetAllEnrollsByCourse?id='+props.data.CourseId,{
+      headers:new Headers({
+        Authorization:"Bearer " 
+      })
+      }).then(res=>res.json())
+      .then(data=>{ 
+      
+       
+        setData(data);
+    console.log("Table data  =",data)
+         
+      }
+      )
+  }
+
+
+  useEffect(()=>{
+    GetEnrollsByCourse();
+  })
+
+  return(
+    <>
+
+<DownloadTableExcel
+                    filename={props.data.CourseName}
+                    sheet="Responses"
+                    currentTableRef={tableRef.current}
+                >
+                            <div  className='btn btn-outline-danger'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+</svg>
+                            </div>
+                </DownloadTableExcel>
+   
+    <table ref={tableRef} class="visually-hidden">
+    <tbody>
+      <tr>
+      <th>Student Id</th>
+        <th>Student Name</th>
+        <th>Student College Id</th>
+        <th>Contact No</th>
+        <th>College Name</th>
+        <th>Email Id</th>
+
+        <th>course Name</th>
+        <th>Course Price</th>
+        <th>Course Duration</th>
+        <th>Transaction Id</th>
+        <th>Course Id</th>
+        <th>Course Start Date</th>
+        <th>Course End Date</th>
+        <th>Enrollment Id</th>
+        <th>Course Status</th>
+        
+         
+      </tr>
+      {Data.map((da,i)=>(
+        <tr>
+          <td>{da.StudentId}</td>
+          <td>{da.StudentName}</td>
+          <td>{da.CollegeId}</td>
+          <td>{da.ContactNumber}</td>
+          <td>{da.CollegeName}</td>
+          <td>{da.StudentEmailId}</td>
+         
+          <td>{da.CourseName}</td>
+          <td>{da.CoursePrice}</td>
+          <td>{da.CourseDuration}</td>
+          <td>{da.TransactionId}</td>
+          <td>{da.CourseId}</td>
+          <td>{da.CourseStartDate}</td>
+
+          <td>{da.CourseEndDate}</td>
+          <td>{da.EnrollmentId}</td>
+          <td>{da.CourseStatus}</td>
+        </tr>
+      ))
+
+      }
+      </tbody>
+    </table>
     </>
   )
 }
