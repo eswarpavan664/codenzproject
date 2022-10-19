@@ -98,12 +98,12 @@ function LoginPage(props) {
              <div className='row home_row'>
                  <div className='col-md-5 p-md-5 text-center p-5 student_login'>
                      <h1>Student Login</h1>
-                     <p>Here the students have to login, so he/ she can view the cources and enroll into it. He/ she can learn the cources in their dashboard. Happy learning!!</p>
+                     <p>Here the students have to login, so he/ she can view the cources and enroll into it. He/ she can learn the courses in their dashboard. Happy learning!!</p>
                      <button className='btn btn-outline-dark' onClick={signInWithGoogle}>Continue with google</button>
                  </div>
                  <div className='col-md-5 offset-md-1 p-md-5 text-center p-5 admin_login'>
                      <h1>Admin Login</h1>
-                     <p>Here the admins have to login, so the admin can post the cources and he can see the number of students he got and also he can message to his students.</p>
+                     <p>Here the admins have to login, so the admin can post the courses and he can see the number of students he got and also he can message to his students.</p>
                      
                      <NavLink to="/AdminLogin">
                          <button class="btn btn-outline-dark">Continue as Admin</button>
