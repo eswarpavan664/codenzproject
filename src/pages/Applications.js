@@ -206,13 +206,13 @@ function Application(props){
 
             <div className='container my-5'>
                 <div className='row align-items-center' style={{borderRadius:"15px",border:"1px solid gray"}} >
-                <NavLink to="/ApplicationDetailsPage"  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
-                    <div className='col-md-3 text-center '>
+                <NavLink to="/ApplicationDetailsPage" className='col-md-3 text-center ' state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
+                    <div  >
                         <img className='img-fluid' src={props.data.CoursePhoto} style={{minHeight:"230px",maxHeight:"230px"}} />
                     </div>
                     </NavLink>
-                    <NavLink to="/ApplicationDetailsPage"  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
-                    <div className='col-6 mt-3'>
+                    <NavLink to="/ApplicationDetailsPage" className='col-6 mt-3'  state={{Data:props.data}}  style={{textDecoration:'none',color:'black'}}>
+                    <div  >
                         
                         
                         <h6>Name:- {props.data.StudentName}</h6>
