@@ -44,7 +44,10 @@ function PaymentPage(props) {
     let date = newDate.getDate();
     let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
-    if(Data){
+    if(transactionid===""){
+      alert("Transaction Id Is Mandatory")
+    }
+    else if(Data){
 
         if(Data.CollegeId!=="" && Data.CollegeName !=="" && Data.PhoneNumber!==""){
 
