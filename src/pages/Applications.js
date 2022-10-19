@@ -47,11 +47,11 @@ const [Status,setstatus] =useState("");
 
 
  
-
+    const [see,setsee]=useState("refresh")
 
     useEffect(()=>{
         GetApplications();
-    },[Type,TransacId])
+    },[see,Type,TransacId])
  
 
   return (
@@ -81,7 +81,7 @@ const [Status,setstatus] =useState("");
                             <>
                            
 
-                            <Application data={da} Status={Type}  />
+                            <Application data={da} Status={Type}  refre={setsee}/>
                             </>
                         
                         ))
@@ -146,6 +146,7 @@ function Application(props){
               })
               .then(res=>{ 
                 //props.setstatus(sts)
+                props.refre("again refresh")
                 SendGmail("Dear Candidate You Successfully "+sts+" course and You can Download certificate at Your Account --Team CS CODENZ",props.data.StudentEmailId);
             })
         }
@@ -163,6 +164,7 @@ function Application(props){
               })
               .then(res=>{ 
               //props.setstatus(sts)
+              props.refre("again refresh")
               SendGmail("Dear Candidate Your Application "+sts+" for course "+props.data.CourseName+"Application Id- "+props.data.EnrollmentId +"-Team CS CODENZ",props.data.StudentEmailId);
             })
         }
@@ -180,9 +182,11 @@ function Application(props){
             
               console.log(data)
               if(data.status==="Done"){
+                props.refre("again refresh")
                 alert("Done")
               }
               else{
+                props.refre("again refresh")
                 alert("not done")
               }
             }
