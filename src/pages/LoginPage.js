@@ -67,7 +67,7 @@ function LoginPage(props) {
             localStorage.setItem('token',Email)
             localStorage.setItem('Role',"Student")
             
-            navigate('/Dashboard');
+            navigate('/Profile');
          } catch (e) {
            console.log("error hai",e)
             
